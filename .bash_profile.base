@@ -1,0 +1,48 @@
+export EDITOR=vim
+export PATH=$HOME/bin:$PATH
+#export PATH=$HOME/local/autoconf-2.68/bin:$PATH
+#export PATH=$HOME/local/automake-1.13/bin:$PATH
+#export PATH=$HOME/local/node/bin:$PATH
+#export GOROOT=$HOME/local/go
+#export GOPATH=$HOME/local/gopath0
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+#export PATH=/usr/local/texlive/2011/bin/x86_64-darwin:$PATH
+export P4CONFIG=.p4config
+#export P4TARGET=perforce.sanmateo.greenplum.com:1666
+export NODE_PATH=$HOME/local/node/lib/node_modules
+#export JAVA_HOME=`/usr/libexec/java_home`
+
+# increase file limit for gpinitsystem
+#ulimit -n 65536
+
+alias ll='ls -lrt'
+alias go2main='cd ~/dev/cdb2/main'
+alias go2private='cd ~/dev/cdb2/private/hharada'
+alias setpg='export PATH=;source ~/.bash_profile.pgsql'
+alias lgp='ps -e -o "pid,ppid,command" 2>/dev/null | grep [p]ostgres'
+alias watchgp='watch -n1 "ps -e -o \"pid,ppid,command\" 2>/dev/null | grep [p]ostgres"'
+
+function go2(){
+  case $1 in
+  gitmain)
+    cd ~/dev/cdb2/private/hharada/gitmain
+    ;;
+  cdb2git)
+    cd ~/dev/cdb2git/main
+    ;;
+  repl)
+    cd ~/dev/cdb2git/repl/cdb-pg
+    ;;
+  uao)
+    cd ~/dev/cdb2git/uao/cdb-pg
+    ;;
+  hack)
+    cd ~/dev/cdb2git/hack/cdb-pg
+    ;;
+  *)
+    echo "where?"
+    ;;
+  esac
+}
+
+PS1="[\W: \u\$(git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/{\1}/')]\$ "

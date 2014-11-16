@@ -1,0 +1,12 @@
+if [ -z $PATH ]; then
+	export PATH=
+	export DYLD_LIBRARY_PATH=
+	source /etc/profile
+fi
+
+if [ -e $HOME/.bash_profile.gpdb ]; then
+	source $HOME/.bash_profile.gpdb
+fi
+
+PATH=`perl -e '($s=$ENV{PATH})=~s{/opt.+?(?::|$)}{}g;print $s'`
+DYLD_LIBRARY_PATH=`perl -e '($s=$ENV{DYLD_LIBRARY_PATH})=~s{/opt.+?(?::|$)}{}g;print $s'`
